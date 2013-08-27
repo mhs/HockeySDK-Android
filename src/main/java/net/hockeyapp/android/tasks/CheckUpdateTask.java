@@ -155,6 +155,7 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
       
       JSONArray json = new JSONArray(VersionCache.getVersionInfo(activity));
       if ((getCachingEnabled()) && (findNewVersion(json, versionCode))) {
+        Log.d(Constants.TAG, "Found new version of app: " + json);
         return json;
       }
       
@@ -169,6 +170,7 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
       json = new JSONArray(jsonString);
       if (findNewVersion(json, versionCode)) {
         json = limitResponseSize(json);
+        Log.d(Constants.TAG, "Found new version of app: " + json);
         return json;
       }
     }
@@ -176,6 +178,7 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
       e.printStackTrace();
     }
     
+    Log.d(Constants.TAG, "No new version of app found.");
     return null;
   }
 
